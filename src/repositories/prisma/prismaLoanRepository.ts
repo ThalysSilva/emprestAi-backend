@@ -1,11 +1,11 @@
 import { PrismaService } from 'src/libs/database/prisma.service';
-import { ILoanRepository } from '../interfaces/loanRepository';
 import { Loan } from 'src/@types/entities/loan';
 import { Injectable } from '@nestjs/common';
 import { OmitDefaultData } from 'src/utils/types';
+import { LoanRepository } from '../contracts/loanRepository';
 
 @Injectable()
-export class PrismaLoanRepository implements ILoanRepository {
+export class PrismaLoanRepository implements LoanRepository {
   constructor(private readonly prisma: PrismaService) {}
   async createLoan(
     data: Omit<OmitDefaultData<Loan>, 'installments'>,

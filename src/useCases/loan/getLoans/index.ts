@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { Loan } from 'src/@types/entities/loan';
-import { ILoanRepository } from 'src/repositories/interfaces/loanRepository';
+import { LoanRepository } from 'src/repositories/contracts/loanRepository';
 
 @Injectable()
 export class GetLoansUseCase {
-  constructor(private loanRepository: ILoanRepository) {}
+  constructor(private loanRepository: LoanRepository) {}
 
   async execute(): Promise<Loan[]> {
     const loans = await this.loanRepository.getAllLoans();

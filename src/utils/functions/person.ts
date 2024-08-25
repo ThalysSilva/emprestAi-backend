@@ -17,3 +17,15 @@ export function getIdentificationType(identification: string) {
 
   return identificationType;
 }
+
+export function isValidPersonIdentification(
+  identification: string,
+  identificationType?: PersonIdentificationType,
+) {
+  if (!identificationType) {
+    const identificationLengths = Object.values(personIdentificationLength);
+    return identificationLengths.includes(length);
+  }
+  const identificationLength = personIdentificationLength[identificationType];
+  return identification.length === identificationLength;
+}

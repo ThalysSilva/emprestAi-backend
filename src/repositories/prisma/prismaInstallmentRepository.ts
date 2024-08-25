@@ -1,12 +1,12 @@
 import { PrismaService } from 'src/libs/database/prisma.service';
-import { IInstallmentRepository } from '../interfaces/instalmentRepository';
+import { InstallmentRepository } from '../contracts/instalmentRepository';
 import { Installment } from 'src/@types/entities/loan';
 import { OmitDefaultData } from 'src/utils/types';
 import { Prisma } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class PrismaInstallmentRepository implements IInstallmentRepository {
+export class PrismaInstallmentRepository implements InstallmentRepository {
   constructor(private readonly prisma: PrismaService) {}
   async createInstallment(
     data: OmitDefaultData<Installment>,

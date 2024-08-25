@@ -1,12 +1,12 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { Installment, Loan } from 'src/@types/entities/loan';
-import { IInstallmentRepository } from 'src/repositories/interfaces/instalmentRepository';
-import { ILoanRepository } from 'src/repositories/interfaces/loanRepository';
+import { InstallmentRepository } from 'src/repositories/contracts/instalmentRepository';
+import { LoanRepository } from 'src/repositories/contracts/loanRepository';
 import { getInstallmentDate } from 'src/utils/functions/installment';
 import { OmitDefaultData } from 'src/utils/types';
 
 type Payload = {
-  userId: string;
+  personId: string;
   amount: number;
   installmentsQty: number;
 };
@@ -14,13 +14,13 @@ type Payload = {
 @Injectable()
 export class CreateLoanUseCase {
   constructor(
-    private readonly loanRepository: ILoanRepository,
-    private readonly instalmentRepository: IInstallmentRepository,
+    private readonly loanRepository: LoanRepository,
+    private readonly instalmentRepository: InstallmentRepository,
   ) {}
 
   async execute(payload: Payload): Promise<Loan> {
     const loanPayload = {
-      personId: payload.userId,
+      personId: payload.personId,
       amount: payload.amount,
       installmentsQty: payload.installmentsQty,
       status: 'pending',

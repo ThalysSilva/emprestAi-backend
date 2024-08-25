@@ -1,27 +1,27 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { InternalServerErrorException } from '@nestjs/common';
 import { PayInstallmentUseCase } from './index';
-import { IInstallmentRepository } from 'src/repositories/interfaces/instalmentRepository';
-import { ILoanRepository } from 'src/repositories/interfaces/loanRepository';
+import { InstallmentRepository } from 'src/repositories/contracts/instalmentRepository';
+import { LoanRepository } from 'src/repositories/contracts/loanRepository';
 import { Installment, Loan } from 'src/@types/entities/loan';
 
 describe('PayLoanUseCase', () => {
   let payLoanUseCase: PayInstallmentUseCase;
-  let loanRepository: jest.Mocked<ILoanRepository>;
-  let installmentRepository: jest.Mocked<IInstallmentRepository>;
+  let loanRepository: jest.Mocked<LoanRepository>;
+  let installmentRepository: jest.Mocked<InstallmentRepository>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         PayInstallmentUseCase,
         {
-          provide: 'ILoanRepository',
+          provide: 'LoanRepository',
           useValue: {
             getLoanById: jest.fn(),
           },
         },
         {
-          provide: 'IInstallmentRepository',
+          provide: 'InstallmentRepository',
           useValue: {
             updateInstallment: jest.fn(),
           },
@@ -30,10 +30,9 @@ describe('PayLoanUseCase', () => {
     }).compile();
 
     payLoanUseCase = module.get<PayInstallmentUseCase>(PayInstallmentUseCase);
-    loanRepository =
-      module.get<jest.Mocked<ILoanRepository>>('ILoanRepository');
-    installmentRepository = module.get<jest.Mocked<IInstallmentRepository>>(
-      'IInstallmentRepository',
+    loanRepository = module.get<jest.Mocked<LoanRepository>>('LoanRepository');
+    installmentRepository = module.get<jest.Mocked<InstallmentRepository>>(
+      'InstallmentRepository',
     );
   });
 

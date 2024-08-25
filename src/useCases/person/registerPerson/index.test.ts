@@ -1,24 +1,24 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { RegisterPersonUseCase } from './index';
-import { IPersonRepository } from 'src/repositories/interfaces/personRepository';
 import { Person } from 'src/@types/entities/person';
 import { InternalServerErrorException } from '@nestjs/common';
 import { getIdentificationType } from 'src/utils/functions/person';
 import { amountByPersonType } from 'src/consts/person';
+import { PersonRepository } from 'src/repositories/contracts/personRepository';
 
 jest.mock('src/utils/functions/person');
 jest.mock('src/consts/person');
 
 describe('RegisterPersonUseCase', () => {
   let registerPersonUseCase: RegisterPersonUseCase;
-  let personRepository: jest.Mocked<IPersonRepository>;
+  let personRepository: jest.Mocked<PersonRepository>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         RegisterPersonUseCase,
         {
-          provide: 'IPersonRepository',
+          provide: 'PersonRepository',
           useValue: {
             createPerson: jest.fn(),
           },
@@ -30,12 +30,12 @@ describe('RegisterPersonUseCase', () => {
       RegisterPersonUseCase,
     );
     personRepository =
-      module.get<jest.Mocked<IPersonRepository>>('IPersonRepository');
+      module.get<jest.Mocked<PersonRepository>>('PersonRepository');
   });
 
   it('should call createPerson on the repository and return the created person', async () => {
     const payload = {
-      birthdate: new Date('1990-01-01'),
+      birthdate: new Date('1990-01-01').toISOString(),
       identification: '15574841711',
       name: 'John Doe',
     };
@@ -45,6 +45,7 @@ describe('RegisterPersonUseCase', () => {
 
     const createdPerson: Person = {
       ...payload,
+      birthdate: new Date('1990-01-01'),
       identificationType,
       ...amountLimits,
     };
@@ -62,7 +63,7 @@ describe('RegisterPersonUseCase', () => {
 
   it('should throw an InternalServerErrorException if createPerson returns null', async () => {
     const payload = {
-      birthdate: new Date('1990-01-01'),
+      birthdate: new Date('1990-01-01').toISOString(),
       identification: '15574841711',
       name: 'John Doe',
     };

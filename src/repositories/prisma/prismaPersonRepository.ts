@@ -1,10 +1,10 @@
 import { PrismaService } from 'src/libs/database/prisma.service';
-import { IPersonRepository } from '../interfaces/personRepository';
 import { Person } from 'src/@types/entities/person';
 import { Injectable } from '@nestjs/common';
+import { PersonRepository } from '../contracts/personRepository';
 
 @Injectable()
-export class PrismaPersonRepository implements IPersonRepository {
+export class PrismaPersonRepository implements PersonRepository {
   constructor(private prisma: PrismaService) {}
   async createPerson(data: Person): Promise<Person> {
     const person = await this.prisma.person.create({ data });

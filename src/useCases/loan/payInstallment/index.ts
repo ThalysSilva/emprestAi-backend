@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { Installment } from 'src/@types/entities/loan';
-import { IInstallmentRepository } from 'src/repositories/interfaces/instalmentRepository';
-import { ILoanRepository } from 'src/repositories/interfaces/loanRepository';
+import { InstallmentRepository } from 'src/repositories/contracts/instalmentRepository';
+import { LoanRepository } from 'src/repositories/contracts/loanRepository';
 
 type Payload = {
   loanId: string;
@@ -10,8 +10,8 @@ type Payload = {
 @Injectable()
 export class PayInstallmentUseCase {
   constructor(
-    private readonly loanRepository: ILoanRepository,
-    private readonly installmentRepository: IInstallmentRepository,
+    private readonly loanRepository: LoanRepository,
+    private readonly installmentRepository: InstallmentRepository,
   ) {}
 
   async execute(payload: Payload): Promise<Installment> {
