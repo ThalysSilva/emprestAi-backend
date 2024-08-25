@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Person {
+  identification     String   @id @unique
+  name               String
+  birthdate          DateTime
+  identificationType String
+  minimumMonthAmount Int
+  maximumTotalAmount Int
+  loans              Loan[]
+
+  @@map("persons")
+}
+
+model Loan {
+  id           String        @id @default(uuid())
+  amount       Int
+  status       String
+  person       Person        @relation(fields: [personId], references: [identification])
+  personId     String
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  paymentDate  DateTime?
+  installments Installment[]
+
+  @@map("loans")
+}
+
+model Installment {
+  id          String    @id @default(uuid())
+  amount      Int
+  dueDate     DateTime
+  status      String
+  loan        Loan      @relation(fields: [loanId], references: [id], onDelete: Cascade)
+  loanId      String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  paymentDate DateTime?
+
+  @@map("installments")
+}
