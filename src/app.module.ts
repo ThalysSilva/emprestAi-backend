@@ -15,7 +15,6 @@ import { LoanController } from './controllers/loan.controller';
 import { PersonController } from './controllers/person.controller';
 
 @Module({
-  imports: [],
   controllers: [LoanController, PersonController],
   providers: [
     PrismaService,
