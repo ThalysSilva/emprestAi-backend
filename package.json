@@ -17,7 +17,13 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "prisma:migrate": "npx prisma migrate dev",
+    "prisma:init-migration": "npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script > prisma/migrations/0_init/migration.sql",
+    "prisma:init-migration-resolve": "npx prisma migrate resolve --applied ./prisma/migrations/0_init --schema prisma/schema.prisma",
+    "prisma:generate": "npx prisma generate",
+    "prisma:setup": "npm run prisma:generate && npm run prisma:init-migration && npm run prisma:init-migration-resolve && npm run prisma:migrate",
+    "prisma:studio": "npx prisma studio"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
