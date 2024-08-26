@@ -18,7 +18,7 @@ describe('RegisterPersonUseCase', () => {
       providers: [
         RegisterPersonUseCase,
         {
-          provide: 'PersonRepository',
+          provide: PersonRepository,
           useValue: {
             createPerson: jest.fn(),
           },
@@ -30,7 +30,7 @@ describe('RegisterPersonUseCase', () => {
       RegisterPersonUseCase,
     );
     personRepository =
-      module.get<jest.Mocked<PersonRepository>>('PersonRepository');
+      module.get<jest.Mocked<PersonRepository>>(PersonRepository);
   });
 
   it('should call createPerson on the repository and return the created person', async () => {

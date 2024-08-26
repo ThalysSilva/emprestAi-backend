@@ -18,13 +18,13 @@ describe('CreateLoanUseCase', () => {
       providers: [
         CreateLoanUseCase,
         {
-          provide: 'LoanRepository',
+          provide: LoanRepository,
           useValue: {
             createLoan: jest.fn(),
           },
         },
         {
-          provide: 'InstallmentRepository',
+          provide: InstallmentRepository,
           useValue: {
             createInstallments: jest.fn(),
           },
@@ -33,9 +33,9 @@ describe('CreateLoanUseCase', () => {
     }).compile();
 
     createLoanUseCase = module.get<CreateLoanUseCase>(CreateLoanUseCase);
-    loanRepository = module.get<jest.Mocked<LoanRepository>>('LoanRepository');
+    loanRepository = module.get<jest.Mocked<LoanRepository>>(LoanRepository);
     installmentRepository = module.get<jest.Mocked<InstallmentRepository>>(
-      'InstallmentRepository',
+      InstallmentRepository,
     );
   });
 
