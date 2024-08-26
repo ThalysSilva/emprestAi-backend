@@ -1,3 +1,5 @@
+import { Person } from './person';
+
 export type Loan = {
   id: string;
   personId: string;
@@ -8,6 +10,7 @@ export type Loan = {
   updatedAt: Date;
   paymentDate?: Date;
   installments?: Installment[];
+  person: Person;
 };
 
 export type Installment = {

@@ -8,7 +8,7 @@ import { LoanRepository } from '../contracts/loanRepository';
 export class PrismaLoanRepository implements LoanRepository {
   constructor(private readonly prisma: PrismaService) {}
   async createLoan(
-    data: Omit<OmitDefaultData<Loan>, 'installments'>,
+    data: Omit<OmitDefaultData<Loan>, 'installments' | 'person'>,
   ): Promise<Loan> {
     const loan = await this.prisma.loan.create({ data });
 
@@ -18,7 +18,7 @@ export class PrismaLoanRepository implements LoanRepository {
   async getLoanById(id: string): Promise<Loan> {
     const loan = await this.prisma.loan.findUnique({
       where: { id },
-      include: { installments: true },
+      include: { installments: true, person: true },
     });
 
     return loan as Loan;
@@ -27,7 +27,7 @@ export class PrismaLoanRepository implements LoanRepository {
   async getLoanByPersonId(personId: string): Promise<Loan> {
     const loan = await this.prisma.loan.findFirst({
       where: { personId },
-      include: { installments: true },
+      include: { installments: true, person: true },
     });
 
     return loan as Loan;
@@ -35,7 +35,7 @@ export class PrismaLoanRepository implements LoanRepository {
 
   async updateLoan(
     id: string,
-    data: Omit<OmitDefaultData<Loan>, 'installments'>,
+    data: Omit<OmitDefaultData<Loan>, 'installments' | 'person'>,
   ): Promise<Loan> {
     const updatedLoan = await this.prisma.loan.update({
       where: { id },
@@ -51,7 +51,7 @@ export class PrismaLoanRepository implements LoanRepository {
 
   async getAllLoans(): Promise<Loan[]> {
     const loans = await this.prisma.loan.findMany({
-      include: { installments: true },
+      include: { installments: true, person: true },
     });
 
     return loans as Loan[];
