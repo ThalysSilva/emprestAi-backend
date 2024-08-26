@@ -4,7 +4,6 @@ export type Loan = {
   id: string;
   personId: string;
   amount: number;
-  installmentsQty: number;
   status: 'paid' | 'pending';
   createdAt: Date;
   updatedAt: Date;

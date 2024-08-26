@@ -50,7 +50,6 @@ describe('CreateLoanUseCase', () => {
       id: '1',
       createdAt: new Date('2023-01-01'),
       amount: payload.amount,
-      installmentsQty: payload.installmentsQty,
       status: 'pending',
       personId: payload.personId,
       updatedAt: new Date('2023-01-01'),
@@ -67,7 +66,7 @@ describe('CreateLoanUseCase', () => {
       { length: payload.installmentsQty },
       (_, index) => {
         const installmentOrder = index + 1;
-        const dueDate = new Date('2023-01-01'); // Mocked due date
+        const dueDate = new Date('2023-01-01');
         return {
           loanId: createdLoan.id,
           amount: payload.amount / payload.installmentsQty,
@@ -104,7 +103,6 @@ describe('CreateLoanUseCase', () => {
       id: '1',
       createdAt: new Date('2023-01-01'),
       amount: payload.amount,
-      installmentsQty: payload.installmentsQty,
       status: 'pending',
       personId: payload.personId,
       updatedAt: new Date('2023-01-01'),
@@ -115,7 +113,7 @@ describe('CreateLoanUseCase', () => {
     installmentRepository.createInstallments.mockResolvedValue({ count: 3 });
 
     await expect(createLoanUseCase.execute(payload)).rejects.toThrow(
-      new InternalServerErrorException('Error on creating installments'),
+      new InternalServerErrorException('Error ao criar parcelas'),
     );
   });
 });

@@ -22,7 +22,6 @@ export class CreateLoanUseCase {
     const loanPayload = {
       personId: payload.personId,
       amount: payload.amount,
-      installmentsQty: payload.installmentsQty,
       status: 'pending',
     } as OmitDefaultData<Loan>;
 
@@ -39,7 +38,6 @@ export class CreateLoanUseCase {
         const installmentPayload = {
           loanId: createdLoan.id,
           amount: payload.amount / payload.installmentsQty,
-          number: index + 1,
           status: 'pending',
           dueDate,
         } as OmitDefaultData<Installment>;
@@ -52,9 +50,13 @@ export class CreateLoanUseCase {
       await this.instalmentRepository.createInstallments(batchInstallments);
 
     if (qtyCreated.count !== payload.installmentsQty) {
-      throw new InternalServerErrorException('Error on creating installments');
+      throw new InternalServerErrorException('Error ao criar parcelas');
     }
 
-    return createdLoan;
+    const loanWithInstallments = await this.loanRepository.getLoanById(
+      createdLoan.id,
+    );
+
+    return loanWithInstallments;
   }
 }
