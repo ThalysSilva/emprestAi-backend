@@ -1,7 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { RegisterPersonUseCase } from './index';
 import { Person } from 'src/@types/entities/person';
-import { InternalServerErrorException } from '@nestjs/common';
+import {
+  BadRequestException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { getIdentificationType } from 'src/utils/functions/person';
 import { amountByPersonType } from 'src/consts/person';
 import { PersonRepository } from 'src/repositories/contracts/personRepository';
@@ -21,6 +24,7 @@ describe('RegisterPersonUseCase', () => {
           provide: PersonRepository,
           useValue: {
             createPerson: jest.fn(),
+            getPersonById: jest.fn(),
           },
         },
       ],
@@ -52,6 +56,7 @@ describe('RegisterPersonUseCase', () => {
 
     (getIdentificationType as jest.Mock).mockReturnValue(identificationType);
 
+    personRepository.getPersonById.mockResolvedValue(null);
     personRepository.createPerson.mockResolvedValue(createdPerson);
 
     const result = await registerPersonUseCase.execute(payload);
@@ -72,10 +77,34 @@ describe('RegisterPersonUseCase', () => {
 
     (getIdentificationType as jest.Mock).mockReturnValue(identificationType);
 
+    personRepository.getPersonById.mockResolvedValue(null);
     personRepository.createPerson.mockResolvedValue(null);
 
     await expect(registerPersonUseCase.execute(payload)).rejects.toThrow(
-      new InternalServerErrorException('Error on creating person'),
+      new InternalServerErrorException('Erro ao criar pessoa'),
+    );
+  });
+
+  it('should throw a BadRequestException if person already exists', async () => {
+    const payload = {
+      birthdate: new Date('1990-01-01').toISOString(),
+      identification: '15574841711',
+      name: 'John Doe',
+    };
+
+    const identificationType = 'naturalPerson';
+    const existingPerson = {
+      birthdate: new Date('1990-01-01'),
+      identification: '15574841711',
+      name: 'John Doe',
+    } as Person;
+
+    (getIdentificationType as jest.Mock).mockReturnValue(identificationType);
+
+    personRepository.getPersonById.mockResolvedValue(existingPerson);
+
+    await expect(registerPersonUseCase.execute(payload)).rejects.toThrow(
+      new BadRequestException('Pessoa já cadastrada'),
     );
   });
 });
