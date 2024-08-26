@@ -5,12 +5,12 @@ import {
 
 export const amountByPersonType = {
   naturalPerson: {
-    minimumMonthAmount: 1000,
-    maximumTotalAmount: 100000,
-  },
-  legalPerson: {
     minimumMonthAmount: 300,
     maximumTotalAmount: 10000,
+  },
+  legalPerson: {
+    minimumMonthAmount: 1000,
+    maximumTotalAmount: 100000,
   },
   retiree: {
     minimumMonthAmount: 400,
