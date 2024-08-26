@@ -47,7 +47,7 @@ describe('PayLoanUseCase', () => {
     await expect(
       payInstallmentUseCase.execute({ loanId: '1' }),
     ).rejects.toThrow(
-      new InternalServerErrorException('This loan has no installments'),
+      new InternalServerErrorException('Esse empréstimo não possui parcelas'),
     );
   });
 
@@ -62,7 +62,9 @@ describe('PayLoanUseCase', () => {
     await expect(
       payInstallmentUseCase.execute({ loanId: '1' }),
     ).rejects.toThrow(
-      new InternalServerErrorException('There are no pending installments'),
+      new InternalServerErrorException(
+        'Não há parcelas pendentes para esse empréstimo',
+      ),
     );
   });
 

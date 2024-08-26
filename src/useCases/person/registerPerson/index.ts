@@ -1,4 +1,8 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { Person } from 'src/@types/entities/person';
 import { amountByPersonType } from 'src/consts/person';
 import { PersonRepository } from 'src/repositories/contracts/personRepository';
@@ -15,6 +19,13 @@ export class RegisterPersonUseCase {
     identification,
     name,
   }: Payload): Promise<Person> {
+    const personExists =
+      await this.personRepository.getPersonById(identification);
+
+    if (personExists) {
+      throw new BadRequestException('Pessoa já cadastrada');
+    }
+
     const birthdate = new Date(birthdateString);
     const identificationType = getIdentificationType(identification);
     const amountLimits = amountByPersonType[identificationType];
@@ -28,7 +39,7 @@ export class RegisterPersonUseCase {
     });
 
     if (!createdPerson) {
-      throw new InternalServerErrorException('Error on creating person');
+      throw new InternalServerErrorException('Erro ao criar pessoa');
     }
     return createdPerson;
   }

@@ -19,7 +19,9 @@ export class PayInstallmentUseCase {
     const installments = loan.installments ?? [];
 
     if (installments.length === 0) {
-      throw new InternalServerErrorException('This loan has no installments');
+      throw new InternalServerErrorException(
+        'Esse empréstimo não possui parcelas',
+      );
     }
 
     const installmentsToPay = installments.filter(
@@ -30,7 +32,7 @@ export class PayInstallmentUseCase {
 
     if (!installmentToPay) {
       throw new InternalServerErrorException(
-        'There are no pending installments',
+        'Não há parcelas pendentes para esse empréstimo',
       );
     }
 
