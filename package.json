@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "npx dotenv -e .env -- cross-var npx prisma generate --schema %PRISMA_SCHEMA% && nest build",
+    "build": "npx prisma generate --schema src/modules/global/db/prisma/schema.prisma && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "prisma:migrate:dev": "dotenv -e .env.development -- cross-var npx prisma migrate dev --schema %PRISMA_SCHEMA%",
     "prisma:generate:dev": "dotenv -e .env.development -- cross-var npx prisma generate --schema %PRISMA_SCHEMA%",
