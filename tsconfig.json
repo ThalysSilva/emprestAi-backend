@@ -22,5 +22,10 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.*.ts", "jest.config.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.*.ts",
+    "jest.config.ts",
+    "webpack-hook.js"
+  ]
 }

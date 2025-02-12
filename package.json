@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "echo 'Iniciando build...' && npx prisma generate --schema=./src/modules/global/db/prisma/schema.prisma && nest build",
-    "build-vercel": "echo 'Rodando o comando build-vercel' && nest build",
+    "build-vercel": "echo 'Rodando o comando build-vercel' && nest build --webpack --webpackPath webpack-hook.js",
     "postinstall": "echo 'Rodando o comando postinstall' && prisma generate --schema=./src/modules/global/db/prisma/schema.prisma",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "prisma:migrate": "npx prisma migrate dev --schema=./src/modules/global/db/prisma/schema.prisma",
@@ -47,7 +47,6 @@
     "dotenv-cli": "^7.4.2",
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
-    "module-alias": "^2.2.3",
     "moment-timezone": "^0.5.46",
     "mongodb": "^6.13.0",
     "nanoid": "^3.3.7",
@@ -57,6 +56,7 @@
     "prisma": "^6.3.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
+    "tsconfig-paths": "^4.2.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {
@@ -90,8 +90,5 @@
     "ts-loader": "^9.4.3",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.3"
-  },
-  "_moduleAliases": {
-    "@": "src"
   }
 }
