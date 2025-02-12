@@ -25,9 +25,8 @@ import { LoanModule } from './modules/loan/loan.module';
       global: true,
     }),
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [
-    AppService,
     {
       provide: APP_FILTER,
       useClass: ExceptionFilterTreatment,
