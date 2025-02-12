@@ -3,6 +3,7 @@
   "builds": [
     {
       "config": {
+        "installCommand": "echo 'Rodando o comando installCommand' && npm install && npx cross-var npx prisma generate --schema %PRISMA_SCHEMA%",
         "buildCommand": "echo 'Rodando o comando buildCommand' && npx cross-var npx prisma generate --schema %PRISMA_SCHEMA% && nest build"
       },
       "src": "dist/src/main.js",
