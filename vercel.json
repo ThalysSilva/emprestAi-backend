@@ -2,9 +2,6 @@
   "version": 2,
   "builds": [
     {
-      "config": {
-        "buildCommand": "echo 'Rodando o comando buildCommand' && npx cross-var npx prisma generate --schema %PRISMA_SCHEMA% && nest build"
-      },
       "src": "dist/src/main.js",
       "use": "@vercel/node"
     }
@@ -15,10 +12,5 @@
       "dest": "dist/src/main.js",
       "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"]
     }
-  ],
-  "build": {
-    "scripts": {
-      "build": "yarn build-vercel"
-    }
-  }
+  ]
 }
