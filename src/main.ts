@@ -36,17 +36,17 @@ async function bootstrap() {
   console.log(allowedUrls);
 
   app.enableCors({
-    origin: [...allowedUrls],
+    origin: '*',
     methods: '*',
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
   });
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  const PORTA = process.env.PORT || 3000;
-  await app.listen(PORTA);
+  const PORT = process.env.PORT || 3003;
+  await app.listen(PORT);
 
-  logger.log(`Aplicação rodando na porta ${PORTA} !!`);
+  logger.log(`Aplicação rodando na porta ${PORT} !!`);
 }
 
 bootstrap();
