@@ -12,5 +12,10 @@
       "dest": "dist/src/main.js",
       "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"]
     }
-  ]
+  ],
+  "build": {
+    "scripts": {
+      "build": "yarn build-vercel"
+    }
+  }
 }
