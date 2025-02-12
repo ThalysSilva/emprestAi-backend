@@ -3,7 +3,7 @@
   "builds": [
     {
       "config": {
-        "buildCommand": "npm run build-vercel"
+        "buildCommand": "cross-var npx prisma generate --schema %PRISMA_SCHEMA% && nest build"
       },
       "src": "dist/src/main.js",
       "use": "@vercel/node"
