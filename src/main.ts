@@ -32,6 +32,8 @@ async function bootstrap() {
   );
 
   const allowedUrls = process.env.ALLOWED_URLS?.split(',') ?? [];
+  console.log('allowedUrls');
+  console.log(allowedUrls);
 
   app.enableCors({
     origin: [...allowedUrls],
