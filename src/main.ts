@@ -30,6 +30,8 @@ async function bootstrap() {
       transform: true,
     }),
   );
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
 
   const allowedUrls = process.env.ALLOWED_URLS?.split(',') ?? [];
   console.log('allowedUrls');
@@ -38,11 +40,9 @@ async function bootstrap() {
   app.enableCors({
     origin: '*',
     methods: '*',
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: '*',
     credentials: true,
   });
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
   const PORT = process.env.PORT || 3003;
   await app.listen(PORT);
 
