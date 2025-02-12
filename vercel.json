@@ -15,5 +15,9 @@
       "dest": "dist/src/main.js",
       "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"]
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "PRISMA_SCHEMA": "./src/modules/global/db/prisma/schema.prisma"
+  }
 }
