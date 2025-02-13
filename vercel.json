@@ -10,7 +10,13 @@
     {
       "src": "/(.*)",
       "dest": "dist/src/main.js",
-      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"]
+      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"],
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        "Access-Control-Allow-Credentials": "true"
+      }
     }
   ]
 }
