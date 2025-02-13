@@ -19,3 +19,8 @@ export function unmaskBrazilianCurrency(value?: string) {
     .replace(',', '.');
   return parseFloat(unmaskedString);
 }
+
+export function maskConnectionString(connectionString?: string): string {
+  if (!connectionString) return '';
+  return connectionString?.replace(/\/\/(.*?):(.*?)@/, '//***:***@');
+}

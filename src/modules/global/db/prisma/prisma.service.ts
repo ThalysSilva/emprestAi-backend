@@ -5,6 +5,7 @@ import {
   Logger,
 } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
+import { maskConnectionString } from 'src/utils/formatters/mask';
 
 @Injectable()
 export class PrismaService
@@ -16,7 +17,9 @@ export class PrismaService
   async onModuleInit() {
     await this.$connect();
     const POSTGRES_DATABASE_URL = process.env.POSTGRES_DATABASE_URL;
-    this.logger.log(`Conectado ao Prisma!! (${POSTGRES_DATABASE_URL})`);
+    this.logger.log(
+      `Conectado ao Prisma!! (${maskConnectionString(POSTGRES_DATABASE_URL)})`,
+    );
   }
 
   async onModuleDestroy() {

@@ -3,6 +3,7 @@ import { MongoClient, Db } from 'mongodb';
 import { MongoService } from './mongo.service';
 import { mongoAdapters } from './mongoAdapters';
 import { mongoRepositories } from './mongoRepositorios';
+import { maskConnectionString } from 'src/utils/formatters/mask';
 
 @Global()
 @Module({
@@ -16,7 +17,7 @@ import { mongoRepositories } from './mongoRepositorios';
         const client = new MongoClient(DATABASE_URL);
         await client.connect();
         logger.log(
-          `Conectado ao MongoDB (${DATABASE_URL}). Banco: ${DATABASE_NAME}`,
+          `Conectado ao MongoDB (${maskConnectionString(DATABASE_URL)}). Banco: ${DATABASE_NAME}`,
         );
         const db = client.db(DATABASE_NAME);
         return { client, db };
