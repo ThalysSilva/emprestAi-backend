@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - mongo # Garante que o MongoDB esteja rodando antes de iniciar o app
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    ports:
+      - "27017:27017" # Porta padrão do MongoDB
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: RZo~~\15z0Sg
+    volumes:
+      - mongo-data:/data/db # Persistência dos dados no host
+    networks:
+      - app-network
+
+volumes:
+  mongo-data: # Volume que armazena os dados do MongoDB
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge
