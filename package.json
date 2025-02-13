@@ -8,7 +8,7 @@
   "scripts": {
     "build": "echo 'Iniciando build...' && npx prisma generate && nest build",
     "build-vercel": "echo 'Rodando o comando build-vercel' && nest build",
-    "postinstall": "echo 'Rodando o comando postinstall' && prisma generate --schema= src/modules/global/db/prisma/schema.prisma",
+    "postinstall": "echo 'Rodando o comando postinstall' && prisma generate",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "prisma:migrate": "npx prisma migrate dev",
     "prisma:generate": "npx prisma generate",
