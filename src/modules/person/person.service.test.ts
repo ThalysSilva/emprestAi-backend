@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 
 import { mock } from 'jest-mock-extended';
 import { PersonRepository } from 'src/repositories/personRepository';
-import { Person } from 'src/@entities/Person';
+import { Person } from 'src/@entities/person';
 import { PersonService } from './person.service';
 import { RegisterPersonSchemaData } from './schemas/registerPerson';
 import { amountByPersonType } from 'src/consts/person';
