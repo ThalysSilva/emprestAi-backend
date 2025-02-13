@@ -1,35 +1,25 @@
-# Use uma imagem base com Node.js
-FROM node:18-alpine AS builder
+# Use a imagem base do Node.js
+FROM node:18-alpine
 
-# Defina o diretório de trabalho no container
+# Defina o diretório de trabalho no contêiner
 WORKDIR /app
 
-# Copie apenas os arquivos necessários para instalar as dependências
+# Copie os arquivos package.json e package-lock.json
 COPY package*.json ./
 
-# Instale as dependências do projeto
+# Instale as dependências
 RUN npm install --omit=dev
 
-# Copie o restante dos arquivos para o container
+# Copie todo o código do projeto para o contêiner
 COPY . .
 
-# Compile o projeto NestJS para JavaScript
+# Gere o cliente Prisma com o caminho absoluto
+RUN npx prisma generate --schema=/app/src/modules/global/db/prisma/schema.prisma
+
+# Compile o projeto
 RUN npm run build
 
-# Use uma imagem leve para a produção
-FROM node:18-alpine AS production
-
-# Defina o diretório de trabalho no container
-WORKDIR /app
-
-# Copie as dependências instaladas e os arquivos compilados
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/dist ./dist
-
-# Variável de ambiente para produção
-ENV NODE_ENV=production
-
-# Exponha a porta que o NestJS utiliza (geralmente 3000)
+# Exponha a porta que a aplicação irá rodar
 EXPOSE 3000
 
 # Comando para iniciar a aplicação
