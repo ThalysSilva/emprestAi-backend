@@ -10,7 +10,7 @@ import {
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Person } from 'src/@entities/person';
 
-@Controller('installment')
+@Controller('person')
 export class PersonController {
   constructor(private readonly personService: PersonService) {}
 
