@@ -18,10 +18,14 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "src/*": ["src/*"]
+    }
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.*.ts",
     "jest.config.ts",
+    "webpack-hook.js"
   ]
 }
