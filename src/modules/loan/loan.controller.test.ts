@@ -3,7 +3,7 @@ import { mock } from 'jest-mock-extended';
 import { LoanService } from './loan.service';
 import { LoanController } from './loan.controller';
 import { CreateLoanSchemaData } from './schemas/createLoan';
-import { Installment, Loan } from '@/@entities/loan';
+import { Installment, Loan } from 'src/@entities/loan';
 
 const loanServiceMock = mock<LoanService>();
 

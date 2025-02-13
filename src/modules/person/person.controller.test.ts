@@ -3,7 +3,7 @@ import { mock } from 'jest-mock-extended';
 import { PersonService } from './person.service';
 import { PersonController } from './person.controller';
 import { RegisterPersonSchemaData } from './schemas/registerPerson';
-import { Person } from '@/@entities/person';
+import { Person } from 'src/@entities/person';
 
 const personServiceMock = mock<PersonService>();
 

@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 
-import { ValidateRequest } from '@/utils/zod/decorators';
+import { ValidateRequest } from 'src/utils/zod/decorators';
 import { LoanService } from './loan.service';
 import {
   CreateLoanDto,
@@ -8,7 +8,7 @@ import {
   CreateLoanSchemaData,
 } from './schemas/createLoan';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { Installment, Loan } from '@/@entities/loan';
+import { Installment, Loan } from 'src/@entities/loan';
 
 @Controller('loan')
 export class LoanController {

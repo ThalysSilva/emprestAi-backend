@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { OmitDefaultData } from '@/utils/types';
-import { LoanRepository } from '@/repositories/loanRepository';
-import { Loan } from '@/@entities/loan';
+import { OmitDefaultData } from 'src/utils/types';
+import { LoanRepository } from 'src/repositories/loanRepository';
+import { Loan } from 'src/@entities/loan';
 import { PrismaService } from '../prisma.service';
 
 @Injectable()

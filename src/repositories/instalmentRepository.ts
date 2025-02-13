@@ -1,6 +1,6 @@
-import { Installment } from '@/@entities/loan';
+import { Installment } from 'src/@entities/loan';
 import { Prisma } from '@prisma/client';
-import { OmitDefaultData } from '@/utils/types';
+import { OmitDefaultData } from 'src/utils/types';
 
 export abstract class InstallmentRepository {
   abstract createInstallment(

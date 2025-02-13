@@ -1,5 +1,5 @@
-import { AdapterDb } from '@/adapters/db/adapterDb';
-import { MongoAdapterDb } from '@/adapters/db/mongoAdapterDb';
+import { AdapterDb } from 'src/adapters/db/adapterDb';
+import { MongoAdapterDb } from 'src/adapters/db/mongoAdapterDb';
 
 export const mongoAdapters = [
   {

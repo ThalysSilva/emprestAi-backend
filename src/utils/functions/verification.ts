@@ -1,4 +1,4 @@
-import { personIdentificationLength } from '@/consts/person';
+import { personIdentificationLength } from 'src/consts/person';
 
 export function validateCPF(cpf: string): boolean {
   function calculateCheckDigit(digits: string, factor: number): number {

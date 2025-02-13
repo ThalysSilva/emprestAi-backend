@@ -1,7 +1,7 @@
-import { personIdentificationLength } from '@/consts/person';
+import { personIdentificationLength } from 'src/consts/person';
 import { z } from 'zod';
 import moment from 'moment-timezone';
-import { validatePersonIdentification } from '@/utils/functions/person';
+import { validatePersonIdentification } from 'src/utils/functions/person';
 import { createZodDto } from '@anatine/zod-nestjs';
 
 export const registerPersonSchema = z.object({

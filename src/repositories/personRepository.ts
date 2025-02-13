@@ -1,4 +1,4 @@
-import { Person } from '@/@entities/person';
+import { Person } from 'src/@entities/person';
 
 export abstract class PersonRepository {
   abstract createPerson(data: Person): Promise<Person>;

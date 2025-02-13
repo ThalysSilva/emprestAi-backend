@@ -2,11 +2,11 @@ import { Injectable } from '@nestjs/common';
 import {
   BadRequestError,
   InternalServerError,
-} from '@/common/applicationError';
-import { Person } from '@/@entities/person';
-import { PersonRepository } from '@/repositories/personRepository';
-import { getIdentificationType } from '@/utils/functions/person';
-import { amountByPersonType } from '@/consts/person';
+} from 'src/common/applicationError';
+import { Person } from 'src/@entities/person';
+import { PersonRepository } from 'src/repositories/personRepository';
+import { getIdentificationType } from 'src/utils/functions/person';
+import { amountByPersonType } from 'src/consts/person';
 
 @Injectable()
 export class PersonService {

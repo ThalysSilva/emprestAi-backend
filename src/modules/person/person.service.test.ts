@@ -1,12 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { mock } from 'jest-mock-extended';
-import { PersonRepository } from '@/repositories/personRepository';
-import { Person } from '@/@entities/Person';
+import { PersonRepository } from 'src/repositories/personRepository';
+import { Person } from 'src/@entities/Person';
 import { PersonService } from './person.service';
 import { RegisterPersonSchemaData } from './schemas/registerPerson';
-import { amountByPersonType } from '@/consts/person';
-import { getIdentificationType } from '@/utils/functions/person';
+import { amountByPersonType } from 'src/consts/person';
+import { getIdentificationType } from 'src/utils/functions/person';
 
 const mockPerson: Person = {
   birthdate: new Date('2023-01-01'),
@@ -30,7 +30,7 @@ const personRepositoryMock = mock<PersonRepository>({
   } as Person),
 });
 
-jest.mock('@/utils/functions/installment', () => ({
+jest.mock('src/utils/functions/installment', () => ({
   getInstallmentDate: jest.fn().mockReturnValue(new Date('2023-01-01')),
 }));
 

@@ -1,4 +1,4 @@
-import { Log } from '@/@entities/log';
+import { Log } from 'src/@entities/log';
 import { Repository } from './repository';
 
 export abstract class LogsRepository extends Repository {

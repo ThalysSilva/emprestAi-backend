@@ -1,16 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { InternalServerError } from '@/common/applicationError';
+import { InternalServerError } from 'src/common/applicationError';
 import { mock } from 'jest-mock-extended';
 import { LoanService } from './loan.service';
-import { LoanRepository } from '@/repositories/loanRepository';
-import { InstallmentRepository } from '@/repositories/instalmentRepository';
-import { Installment, Loan } from '@/@entities/loan';
+import { LoanRepository } from 'src/repositories/loanRepository';
+import { InstallmentRepository } from 'src/repositories/instalmentRepository';
+import { Installment, Loan } from 'src/@entities/loan';
 import { CreateLoanSchemaData } from './schemas/createLoan';
-import { getInstallmentDate } from '@/utils/functions/installment';
-import { OmitDefaultData } from '@/utils/types';
+import { getInstallmentDate } from 'src/utils/functions/installment';
+import { OmitDefaultData } from 'src/utils/types';
 
-jest.mock('@/utils/functions/installment', () => ({
+jest.mock('src/utils/functions/installment', () => ({
   getInstallmentDate: jest.fn().mockReturnValue(new Date('2023-01-01')),
 }));
 

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { AdapterDb } from './adapterDb';
 import { ClientSession } from 'mongodb';
-import { MongoService } from '@/modules/global/db/mongodb/mongo.service';
-import { Repository } from '@/repositories/repository';
+import { MongoService } from 'src/modules/global/db/mongodb/mongo.service';
+import { Repository } from 'src/repositories/repository';
 
 @Injectable()
 export class MongoAdapterDb implements AdapterDb {

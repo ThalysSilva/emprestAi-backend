@@ -1,9 +1,9 @@
 import { ClientSession, Collection, Db, ObjectId } from 'mongodb';
 import { Injectable } from '@nestjs/common';
 import { LogsRepository } from '../../../../../repositories/logRepository';
-import { Log } from '@/@entities/log';
-import { LogsModel } from '@/modules/global/db/mongodb/models';
-import { MongoService } from '@/modules/global/db/mongodb/mongo.service';
+import { Log } from 'src/@entities/log';
+import { LogsModel } from 'src/modules/global/db/mongodb/models';
+import { MongoService } from 'src/modules/global/db/mongodb/mongo.service';
 
 @Injectable()
 export class MongoLogsRepository implements LogsRepository {

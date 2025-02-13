@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { Response } from 'express';
 import { ApplicationError } from '../applicationError';
-import { LogService } from '@/modules/global/logs/log.service';
+import { LogService } from 'src/modules/global/logs/log.service';
 
 @Catch()
 export class ExceptionFilterTreatment implements ExceptionFilter {

@@ -1,8 +1,8 @@
-import { OmitDefaultData } from '@/utils/types';
+import { OmitDefaultData } from 'src/utils/types';
 import { Prisma } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
-import { Installment } from '@/@entities/loan';
-import { InstallmentRepository } from '@/repositories/instalmentRepository';
+import { Installment } from 'src/@entities/loan';
+import { InstallmentRepository } from 'src/repositories/instalmentRepository';
 import { PrismaService } from '../prisma.service';
 
 @Injectable()

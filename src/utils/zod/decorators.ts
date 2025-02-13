@@ -1,5 +1,5 @@
 import { applyDecorators, UsePipes } from '@nestjs/common';
-import { ZodValidationPipe } from '@/common/pipes/zod';
+import { ZodValidationPipe } from 'src/common/pipes/zod';
 import { ZodTypeAny } from 'zod';
 
 export function ValidateRequest(schema: ZodTypeAny) {

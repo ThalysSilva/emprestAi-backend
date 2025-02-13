@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { LogProps, LogService } from './log.service';
-import { LogsRepository } from '@/repositories/logRepository';
+import { LogsRepository } from 'src/repositories/logRepository';
 import { Logger } from '@nestjs/common';
 
 jest.mock('moment-timezone', () => {
@@ -11,7 +11,7 @@ jest.mock('moment-timezone', () => {
   return jest.fn(() => m);
 });
 
-jest.mock('@/utils/functions/objects', () => ({
+jest.mock('src/utils/functions/objects', () => ({
   normalizeKeys: jest.fn((obj) => obj),
   removeLoops: jest.fn((obj) => obj),
 }));

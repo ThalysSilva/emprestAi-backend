@@ -1,9 +1,9 @@
-import { amountByPersonType } from '@/consts/person';
-import { toBrazilianCurrency } from '@/utils/formatters/mask';
+import { amountByPersonType } from 'src/consts/person';
+import { toBrazilianCurrency } from 'src/utils/formatters/mask';
 import {
   getIdentificationType,
   validatePersonIdentification,
-} from '@/utils/functions/person';
+} from 'src/utils/functions/person';
 import { createZodDto } from '@anatine/zod-nestjs';
 import { z } from 'zod';
 

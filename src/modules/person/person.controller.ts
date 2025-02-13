@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
 
-import { ValidateRequest } from '@/utils/zod/decorators';
+import { ValidateRequest } from 'src/utils/zod/decorators';
 import { PersonService } from './person.service';
 import {
   RegisterPersonDto,
@@ -8,7 +8,7 @@ import {
   RegisterPersonSchemaData,
 } from './schemas/registerPerson';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { Person } from '@/@entities/person';
+import { Person } from 'src/@entities/person';
 
 @Controller('installment')
 export class PersonController {

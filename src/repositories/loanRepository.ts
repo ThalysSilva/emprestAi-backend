@@ -1,5 +1,5 @@
-import { Loan } from '@/@entities/loan';
-import { OmitDefaultData } from '@/utils/types';
+import { Loan } from 'src/@entities/loan';
+import { OmitDefaultData } from 'src/utils/types';
 
 export abstract class LoanRepository {
   abstract createLoan(

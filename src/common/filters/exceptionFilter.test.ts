@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { LogService } from '@/modules/global/logs/log.service';
+import { LogService } from 'src/modules/global/logs/log.service';
 import { ArgumentsHost, HttpException, HttpStatus } from '@nestjs/common';
 import { NextFunction, Response } from 'express';
 import { mock } from 'jest-mock-extended';

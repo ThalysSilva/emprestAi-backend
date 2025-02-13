@@ -1,9 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { OptionalNullable } from '@/utils/types';
+import { OptionalNullable } from 'src/utils/types';
 import * as moment from 'moment-timezone';
-import { Log, LogType } from '@/@entities/log';
-import { LogsRepository } from '@/repositories/logRepository';
-import { normalizeKeys, removeLoops } from '@/utils/functions/objects';
+import { Log, LogType } from 'src/@entities/log';
+import { LogsRepository } from 'src/repositories/logRepository';
+import { normalizeKeys, removeLoops } from 'src/utils/functions/objects';
 
 export type LogProps = Omit<
   OptionalNullable<Log>,

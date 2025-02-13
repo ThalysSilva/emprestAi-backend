@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 
-import { OmitDefaultData } from '@/utils/types';
-import { LoanRepository } from '@/repositories/loanRepository';
-import { InstallmentRepository } from '@/repositories/instalmentRepository';
-import { Installment, Loan } from '@/@entities/loan';
-import { getInstallmentDate } from '@/utils/functions/installment';
-import { InternalServerError } from '@/common/applicationError';
+import { OmitDefaultData } from 'src/utils/types';
+import { LoanRepository } from 'src/repositories/loanRepository';
+import { InstallmentRepository } from 'src/repositories/instalmentRepository';
+import { Installment, Loan } from 'src/@entities/loan';
+import { getInstallmentDate } from 'src/utils/functions/installment';
+import { InternalServerError } from 'src/common/applicationError';
 import { CreateLoanSchemaData } from './schemas/createLoan';
 
 @Injectable()

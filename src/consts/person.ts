@@ -1,4 +1,4 @@
-import { AmountLimits, PersonIdentificationType } from '@/@entities/person';
+import { AmountLimits, PersonIdentificationType } from 'src/@entities/person';
 
 export const amountByPersonType = {
   naturalPerson: {

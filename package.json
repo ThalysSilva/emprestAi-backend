@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "echo 'Iniciando build...' && npx prisma generate --schema=./src/modules/global/db/prisma/schema.prisma && nest build",
-    "build-vercel": "echo 'Rodando o comando build-vercel' && nest build --webpack --webpackPath webpack-hook.js",
+    "build-vercel": "echo 'Rodando o comando build-vercel' && nest build",
     "postinstall": "echo 'Rodando o comando postinstall' && prisma generate --schema=./src/modules/global/db/prisma/schema.prisma",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "prisma:migrate": "npx prisma migrate dev --schema=./src/modules/global/db/prisma/schema.prisma",

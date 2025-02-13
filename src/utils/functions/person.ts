@@ -1,12 +1,12 @@
 import { BadRequestException } from '@nestjs/common';
-import { personIdentificationLength } from '@/consts/person';
+import { personIdentificationLength } from 'src/consts/person';
 import {
   validateCNPJ,
   validateCPF,
   validateRetireeIdentification,
   validateStudentIdentification,
 } from './verification';
-import { PersonIdentificationType } from '@/@entities/person';
+import { PersonIdentificationType } from 'src/@entities/person';
 
 export function getIdentificationType(identification: string) {
   const identificationTypeEntries = Object.entries(

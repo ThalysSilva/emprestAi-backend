@@ -1,5 +1,5 @@
-import { AdapterDb } from '@/adapters/db/adapterDb';
-import { PrismaAdapterDb } from '@/adapters/db/prismaAdapterDb';
+import { AdapterDb } from 'src/adapters/db/adapterDb';
+import { PrismaAdapterDb } from 'src/adapters/db/prismaAdapterDb';
 
 export const prismaAdapters = [
   {

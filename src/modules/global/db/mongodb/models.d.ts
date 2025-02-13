@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { LogType } from '@/@entities/log';
+import { LogType } from 'src/@entities/log';
 
 export type LogsModel = {
   _id?: ObjectId;

@@ -1,4 +1,4 @@
-import { Repository } from '@/repositories/repository';
+import { Repository } from 'src/repositories/repository';
 
 type Props = {
   repositories: Repository[];
