@@ -35,11 +35,10 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   const allowedUrls = process.env.ALLOWED_URLS?.split(',') ?? [];
-  console.log('allowedUrls');
-  console.log(allowedUrls);
+  logger.log('[CORS] Urls permitidas: ' + allowedUrls.join(', '));
 
   app.enableCors({
-    origin: '*',
+    origin: allowedUrls,
     methods: '*',
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
