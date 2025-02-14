@@ -6,8 +6,9 @@ services:
       dockerfile: Dockerfile
       args:
         POSTGRES_DATABASE_URL: ${POSTGRES_DATABASE_URL}
+        PORT: ${PORT}
     ports:
-      - "3000:3000"
+      - "${PORT}:${PORT}"
     environment:
       - BASE_URL=${BASE_URL}
       - TOKEN_DEVELOPMENT=${TOKEN_DEVELOPMENT}
