@@ -7,10 +7,11 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "echo 'Iniciando build...' && npx prisma generate && nest build",
-    "build-vercel": "echo 'Rodando o comando build-vercel' && nest build",
+    "build-vercel": "echo 'Rodando o comando build-vercel' && yarn build",
     "postinstall": "echo 'Rodando o comando postinstall' && prisma generate",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "prisma:migrate": "npx prisma migrate dev",
+    "prisma:migrate:deploy": "npx prisma migrate deploy",
     "prisma:generate": "npx prisma generate",
     "prisma:db-pull": "npx prisma db pull",
     "prisma:studio": "dotenv -e .env.development -- npx prisma studio",
