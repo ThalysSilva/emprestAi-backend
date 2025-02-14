@@ -42,7 +42,13 @@ async function bootstrap() {
   logger.log('[CORS] Urls permitidas: ' + allowedUrls.join(', '));
 
   app.enableCors({
-    origin: allowedUrls,
+    origin: (origin, callback) => {
+      if (!origin || allowedUrls.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
