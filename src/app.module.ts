@@ -8,6 +8,8 @@ import { PrismaModule } from './modules/global/db/prisma/prisma.module';
 import { MongoModule } from './modules/global/db/mongodb/mongo.module';
 import { PersonModule } from './modules/person/person.module';
 import { LoanModule } from './modules/loan/loan.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -23,8 +25,9 @@ import { LoanModule } from './modules/loan/loan.module';
       global: true,
     }),
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [
+    AppService,
     {
       provide: APP_FILTER,
       useClass: ExceptionFilterTreatment,

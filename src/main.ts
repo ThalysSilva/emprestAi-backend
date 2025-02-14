@@ -3,7 +3,6 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import * as dotenv from 'dotenv';
-import 'tsconfig-paths/register';
 
 dotenv.config();
 
@@ -32,14 +31,14 @@ async function bootstrap() {
     }),
   );
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('docs', app, document);
 
   const allowedUrls = process.env.ALLOWED_URLS?.split(',') ?? [];
   logger.log('[CORS] Urls permitidas: ' + allowedUrls.join(', '));
 
   app.enableCors({
     origin: allowedUrls,
-    methods: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
   });
