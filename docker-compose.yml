@@ -22,9 +22,6 @@ services:
       - REFRESH_TOKEN_SECRET_KEY=${REFRESH_TOKEN_SECRET_KEY}
       - TOKEN_EXPIRATION_TIME=${TOKEN_EXPIRATION_TIME}
       - REFRESH_TOKEN_EXPIRATION_TIME=${REFRESH_TOKEN_EXPIRATION_TIME}
-    depends_on:
-      - nginx
-      - certbot
     networks:
       - app-network
 
@@ -54,6 +51,8 @@ services:
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done'"
     networks:
       - app-network
+    depends_on:
+      - nginx
 
 networks:
   app-network:
