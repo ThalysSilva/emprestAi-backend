@@ -12,14 +12,14 @@ import { maskConnectionString } from 'src/utils/formatters/mask';
       provide: 'MONGO_CONNECTION',
       useFactory: async (): Promise<{ client: MongoClient; db: Db }> => {
         const DATABASE_URL = process.env.MONGO_DATABASE_URL ?? '';
-        const DATABASE_NAME = process.env.DATABASE_NAME ?? '';
+        const MONGO_DATABASE_NAME = process.env.MONGO_DATABASE_NAME ?? '';
         const logger = new Logger('MongoService');
         const client = new MongoClient(DATABASE_URL);
         await client.connect();
         logger.log(
-          `Conectado ao MongoDB (${maskConnectionString(DATABASE_URL)}). Banco: ${DATABASE_NAME}`,
+          `Conectado ao MongoDB (${maskConnectionString(DATABASE_URL)}). Banco: ${MONGO_DATABASE_NAME}`,
         );
-        const db = client.db(DATABASE_NAME);
+        const db = client.db(MONGO_DATABASE_NAME);
         return { client, db };
       },
     },

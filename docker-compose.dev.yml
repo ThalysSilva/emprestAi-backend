@@ -22,39 +22,48 @@ services:
       - REFRESH_TOKEN_SECRET_KEY=${REFRESH_TOKEN_SECRET_KEY}
       - TOKEN_EXPIRATION_TIME=${TOKEN_EXPIRATION_TIME}
       - REFRESH_TOKEN_EXPIRATION_TIME=${REFRESH_TOKEN_EXPIRATION_TIME}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     depends_on:
-      - nginx
-      - certbot
+      - mongo
+      - postgres
     networks:
       - app-network
 
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    ports:
-      - '80:80'
-      - '443:443'
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./certbot/www:/var/www/certbot
-      - /etc/letsencrypt:/etc/letsencrypt
-    depends_on:
-      - app
-    networks:
-      - app-network
+  postgres:
+    image: postgres:15
+    container_name: postgres
     restart: always
-    command: ['nginx', '-g', 'daemon off;']
-
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - '5432:5432'
     volumes:
-      - ./certbot/www:/var/www/certbot
-      - /etc/letsencrypt:/etc/letsencrypt
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done'"
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    ports:
+      - '27017:27017'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - mongo-data:/data/db
     networks:
       - app-network
 
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  postgres-data:
+    driver: local
+  mongo-data:
+    driver: local
